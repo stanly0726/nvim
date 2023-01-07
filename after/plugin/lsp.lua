@@ -1,4 +1,7 @@
 local lsp = require("lsp-zero")
+local tabout = require("tabout")
+local luasnip = require("luasnip")
+
 lsp.preset("recommended")
 
 lsp.ensure_installed({
@@ -32,8 +35,20 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    ['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+            cmp.confirm({ select = true })
+        elseif luasnip.jumpable(1) then
+            luasnip.jump(1)
+        elseif vim.api.nvim_get_mode().mode == 'i' then
+            tabout.tabout()
+        else
+            fallback()
+        end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function() luasnip.jump(-1) end, { 'i', 's' }),
 })
+
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings

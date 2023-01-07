@@ -9,6 +9,7 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use 'shaunsingh/nord.nvim'
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
@@ -48,4 +49,10 @@ return require('packer').startup(function(use)
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
+    use {
+        'abecodes/tabout.nvim',
+        wants = { 'nvim-treesitter' }, -- or require if not used so far
+        after = { 'nvim-cmp' } -- if a completion plugin is using tabs load it before
+    }
+    use 'nvim-tree/nvim-web-devicons'
 end)

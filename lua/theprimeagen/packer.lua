@@ -49,6 +49,8 @@ return require('packer').startup(function(use)
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
+    -- use 'arkav/lualine-lsp-progress'
+    use 'j-hui/fidget.nvim'
     use {
         'abecodes/tabout.nvim',
         wants = { 'nvim-treesitter' }, -- or require if not used so far

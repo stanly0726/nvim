@@ -1,4 +1,3 @@
-
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -30,3 +29,33 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
+
+-- wsl2 clipboard
+local is_wsl = (function()
+    local output = vim.fn.systemlist "uname -r"
+    return not not string.find(output[1] or "", "WSL")
+end)()
+
+if is_wsl then
+    vim.cmd [[
+    let g:clipboard = {
+                \   'name': 'WslClipboard',
+                \   'copy': {
+                \      '+': 'clip.exe',
+                \      '*': 'clip.exe',
+                \    },
+                \   'paste': {
+                \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+                \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+                \   },
+                \   'cache_enabled': 0,
+                \ }
+    ]]
+end
+
+vim.cmd [[
+augroup Format-Options
+    autocmd!
+    autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
+]]

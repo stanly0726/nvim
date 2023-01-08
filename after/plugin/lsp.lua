@@ -34,10 +34,10 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = nil,
     ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
-            cmp.confirm({ select = true })
+            cmp.confirm({ select = false })
         elseif luasnip.jumpable(1) then
             luasnip.jump(1)
         elseif vim.api.nvim_get_mode().mode == 'i' then
@@ -46,7 +46,15 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
             fallback()
         end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function() luasnip.jump(-1) end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+        elseif vim.api.nvim_get_mode().mode == 'i' then
+            tabout.taboutBack()
+        else
+            fallback()
+        end
+    end, { 'i', 's' }),
 })
 
 
@@ -74,7 +82,6 @@ lsp.on_attach(function(client, bufnr)
 
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.hover, opts)
     vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
     vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
     vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)

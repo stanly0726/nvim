@@ -101,4 +101,14 @@ return require('packer').startup(function(use)
             })
         end
     })
+    use {
+        'declancm/cinnamon.nvim',
+        config = function() require('cinnamon').setup({
+                default_delay = 7,
+                extra_keymaps = true,
+                hide_cursor = true,
+                max_length = 200,
+            })
+        end
+    }
 end)

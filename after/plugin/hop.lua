@@ -2,6 +2,7 @@ local hop = require("hop")
 local directions = require("hop.hint").HintDirection
 
 vim.keymap.set("n", ",", function() hop.hint_char1() end)
+vim.keymap.set("n", "<leader>,", function() hop.hint_char2() end)
 
 local directions = require('hop.hint').HintDirection
 vim.keymap.set('', 'f', function()

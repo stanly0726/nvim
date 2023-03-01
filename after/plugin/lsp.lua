@@ -5,7 +5,7 @@ local luasnip = require("luasnip")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'tsserver',
+    -- 'tsserver',
     'lua_ls',
     'rust_analyzer',
 })

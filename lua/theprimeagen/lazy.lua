@@ -124,4 +124,6 @@ return require('lazy').setup({
                 })
             end
         },
+        -- syntax highlight for laravel blade
+        'jwalton512/vim-blade'
     })

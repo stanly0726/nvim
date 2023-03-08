@@ -19,12 +19,12 @@ cmp.event:on(
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<CR>'] = nil,
-    ['<Tab>'] = cmp.mapping(function(fallback)
+        ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+        ['<CR>'] = nil,
+        ['<Tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
             cmp.confirm({ select = false })
         elseif luasnip.jumpable(1) then
@@ -35,7 +35,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
             fallback()
         end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
         if luasnip.jumpable(-1) then
             luasnip.jump(-1)
         elseif vim.api.nvim_get_mode().mode == 'i' then
@@ -78,6 +78,16 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leadr>vrr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "<leadr>vrn", vim.lsp.buf.rename, opts)
 end)
+
+lsp.configure('intelephense', {
+    settings = {
+        intelephense = {
+            format = {
+                braces = "k&r",
+            }
+        }
+    }
+})
 
 lsp.setup()
 

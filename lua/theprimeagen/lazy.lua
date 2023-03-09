@@ -67,30 +67,22 @@ return require('lazy').setup({
             { 'rafamadriz/friendly-snippets' },
         }
     },
-
     -- lualine
     {
         'nvim-lualine/lualine.nvim',
         -- dependencies = { 'kyazdani42/nvim-web-devicons', opt = true }
     },
-
     -- comment(gcc)
-    {
-        'numToStr/Comment.nvim',
-    },
-
+    'numToStr/Comment.nvim',
     -- autopair(pair brackets)
     {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     },
-
     -- fidget(lsp status)
     'j-hui/fidget.nvim',
-
     -- icons
     'nvim-tree/nvim-web-devicons',
-
     -- jump everywhere
     {
         'phaazon/hop.nvim',
@@ -101,7 +93,6 @@ return require('lazy').setup({
             }
         end
     },
-
     -- surround edit
     {
         "kylechui/nvim-surround",
@@ -112,7 +103,6 @@ return require('lazy').setup({
             })
         end
     },
-
     -- smooth movement
     {
         'declancm/cinnamon.nvim',
@@ -125,10 +115,8 @@ return require('lazy').setup({
             })
         end
     },
-
     -- syntax highlight for laravel blade
     'jwalton512/vim-blade',
-
     -- hookup non-lsp sources
     "jose-elias-alvarez/null-ls.nvim",
 })

@@ -16,26 +16,31 @@ return require('lazy').setup({
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.1',
-        dependencies = { { 'nvim-lua/plenary.nvim' } }
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'make',
+                config = function()
+                    require("telescope").load_extension("fzf")
+                end
+            }
+        }
     },
-
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-
     -- nord
     'shaunsingh/nord.nvim',
-
     -- treesitter
-    { 'nvim-treesitter/nvim-treesitter',          build = ':TSUpdate' },
-
+    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
     -- harpoon
     'theprimeagen/harpoon',
-
     -- undotree
     'mbbill/undotree',
-
     -- fugitive(git)
-    'tpope/vim-fugitive',
-
+    {
+        'tpope/vim-fugitive',
+        -- lazy load on keys
+        cmd = "Git",
+    },
     -- lsp
     {
         'VonHeikemen/lsp-zero.nvim',
@@ -51,6 +56,8 @@ return require('lazy').setup({
             -- Autocompletion
             {
                 'hrsh7th/nvim-cmp',
+                -- load cmp on InsertEnter
+                event = "InsertEnter",
                 dependencies = {
                     -- tabout
                     'abecodes/tabout.nvim',
@@ -70,6 +77,7 @@ return require('lazy').setup({
     -- lualine
     {
         'nvim-lualine/lualine.nvim',
+        event = "VeryLazy",
         -- dependencies = { 'kyazdani42/nvim-web-devicons', opt = true }
     },
     -- comment(gcc)
@@ -116,7 +124,10 @@ return require('lazy').setup({
         end
     },
     -- syntax highlight for laravel blade
-    'jwalton512/vim-blade',
+    {
+        'jwalton512/vim-blade',
+        ft = "blade"
+    },
     -- hookup non-lsp sources
     "jose-elias-alvarez/null-ls.nvim",
 })

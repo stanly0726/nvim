@@ -3,6 +3,14 @@ return {
     branch = 'v2',
     event = "BufReadPost",
     keys = {
+        { ',', function()
+            local hop = require("hop")
+            hop.hint_char1()
+        end, { remap = true } },
+        { '<leader>,', function()
+            local hop = require("hop")
+            hop.hint_char2()
+        end, { remap = true } },
         { 'f', function()
             local hop = require("hop")
             local directions = require("hop.hint").HintDirection

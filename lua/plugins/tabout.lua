@@ -1,6 +1,6 @@
 return {
     'abecodes/tabout.nvim',
-    keys = { { '<tab>' }, { '<S-tab>' } },
+    lazy = false,
     opts = { ignore_beginning = false },
     dependencies = { 'nvim-treesitter' }
 }

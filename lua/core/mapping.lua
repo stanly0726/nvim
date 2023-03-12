@@ -13,9 +13,9 @@ local core_map = {
         ["n|<leader>Y"] = map_cmd([["+Y]]),
         ["n|<leader>f"] = map_callback(function()
         if (vim.bo.filetype == "blade") then
-            vim.lsp.buf.format({ timeout_ms = 10000 })
+            vim.lsp.buf.format({ async = true, timeout_ms = 10000 })
         else
-            vim.lsp.buf.format()
+            vim.lsp.buf.format({ async = true })
         end
     end),
         ["n|<C-k>"] = map_cmd("<cmd>cprev<CR>zz"),

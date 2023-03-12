@@ -42,7 +42,7 @@ local function load_options()
         shortmess = "aoOTIcF",
         showbreak = "↳ ",
         showmode = false,
-        showtabline = 2,
+        -- showtabline = 2,
         sidescrolloff = 5,
         signcolumn = "number",
         smartcase = true,

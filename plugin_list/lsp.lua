@@ -29,8 +29,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
             cmp.confirm({ select = false })
         elseif luasnip.jumpable(1) then
             luasnip.jump(1)
-        elseif vim.api.nvim_get_mode().mode == 'i' then
-            tabout.tabout()
+        -- elseif vim.api.nvim_get_mode().mode == 'i' then
+        --     tabout.tabout()
         else
             fallback()
         end
@@ -38,8 +38,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
         ['<S-Tab>'] = cmp.mapping(function(fallback)
         if luasnip.jumpable(-1) then
             luasnip.jump(-1)
-        elseif vim.api.nvim_get_mode().mode == 'i' then
-            tabout.taboutBack()
+        -- elseif vim.api.nvim_get_mode().mode == 'i' then
+        --     tabout.taboutBack()
         else
             fallback()
         end
@@ -84,6 +84,16 @@ lsp.configure('intelephense', {
         intelephense = {
             format = {
                 braces = "k&r",
+            }
+        }
+    }
+})
+
+lsp.configure('lua_ls', {
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
             }
         }
     }

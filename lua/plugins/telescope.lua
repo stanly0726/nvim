@@ -1,6 +1,13 @@
 return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
+    opts = {
+        pickers = {
+            find_files = {
+                no_ignore_parent = true
+            }
+        }
+    },
     keys = {
         -- find, use to move or navigate through files or buffers
         {

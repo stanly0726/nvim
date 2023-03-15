@@ -9,9 +9,10 @@ return {
                     extra_args = { "--sort-tailwindcss-classes", "--sort-html-attributes",
                         "--no-multiple-empty-lines" },
                 }),
+                null_ls.builtins.formatting.black,
             },
             -- debug = true,
         }
     end,
-    dependencies = { 'plenary.nvim' }
+    dependencies = { 'plenary.nvim', 'lsp-zero.nvim' }
 }

@@ -12,6 +12,7 @@ return {
         { 'hrsh7th/nvim-cmp' },     -- Required
         { 'hrsh7th/cmp-nvim-lsp' }, -- Required
         { 'L3MON4D3/LuaSnip' },     -- Required
+        { 'rafamadriz/friendly-snippets' },
 
         -- nvim_cmp_sources
         { 'hrsh7th/cmp-buffer' },
@@ -29,7 +30,6 @@ return {
         })
         local lspconfig = require('lspconfig')
         local cmp = require('cmp')
-        local cmp_action = require('lsp-zero').cmp_action()
         local luasnip = require("luasnip")
 
         -- set autopairs to work with cmp
@@ -43,34 +43,41 @@ return {
             lsp.default_keymaps({ buffer = bufnr })
         end)
 
-        local cmp_select = { behavior = cmp.SelectBehavior.Select }
         require('luasnip.loaders.from_vscode').lazy_load()
         cmp.setup({
+            sources = {
+                { name = 'nvim_lsp' },
+                { name = 'luasnip', keyword_length = 2 },
+                { name = "nvim_lua" },
+                { name = 'path' },
+                { name = 'buffer',  keyword_length = 4 },
+            },
             mapping = {
-                    ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
-                    ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-                    ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-                    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-                    ['<CR>'] = nil,
-                    ['<Tab>'] = cmp.mapping(function(fallback)
+                ['<C-j>'] = cmp.mapping.select_next_item(),
+                ['<C-k>'] = cmp.mapping.select_prev_item(),
+                ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                ['<CR>'] = cmp.mapping.confirm({ select = false }),
+                ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        cmp.confirm({ select = false })
-                    elseif luasnip.jumpable(1) then
-                        luasnip.jump(1)
+                        cmp.select_next_item()
+                    elseif luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
                     else
                         fallback()
                     end
                 end, { 'i', 's' }),
-                    ['<S-Tab>'] = cmp.mapping(function(fallback)
-                    if luasnip.jumpable(-1) then
+                ['<S-Tab>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    elseif luasnip.jumpable(-1) then
                         luasnip.jump(-1)
                     else
                         fallback()
                     end
                 end, { 'i', 's' }),
-            }
+            },
         })
-
 
         lspconfig.intelephense.setup({
             settings = {
@@ -90,6 +97,22 @@ return {
                     }
                 }
             }
+        })
+
+        lspconfig.tsserver.setup({
+            settings = {
+                typescript = {
+                    format = {
+                        indentSize = 2,
+                    }
+                }
+            }
+        })
+
+        lsp.ensure_installed({
+            -- Replace these with whatever servers you want to install
+            'rust_analyzer',
+            'lua_ls',
         })
 
         lsp.setup()

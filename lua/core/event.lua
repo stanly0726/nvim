@@ -60,6 +60,7 @@ function autocmd.load_autocmds()
 				"*",
 				[[setlocal formatoptions-=cro]],
 			},
+			{ "FileType", "html,javascriptreact,typescriptreact", "setlocal tabstop=2 shiftwidth=2 softtabstop=2" },
 		},
 		yank = {
 			{

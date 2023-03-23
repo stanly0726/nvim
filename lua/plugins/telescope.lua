@@ -2,6 +2,13 @@ return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
     opts = {
+        defaults ={
+            layout_config = {
+                horizontal = {
+                    preview_cutoff = 0,
+                }
+            }
+        },
         pickers = {
             find_files = {
                 no_ignore_parent = true

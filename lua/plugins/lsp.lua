@@ -112,7 +112,7 @@ return {
         lsp.ensure_installed({
             -- Replace these with whatever servers you want to install
             'rust_analyzer',
-            'lua_ls',
+            'lua_ls@3.6.14',
         })
 
         lsp.setup()

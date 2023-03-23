@@ -10,6 +10,7 @@ return {
                         "--no-multiple-empty-lines" },
                 }),
                 null_ls.builtins.formatting.black,
+                null_ls.builtins.formatting.prettierd,
             },
             -- debug = true,
         }

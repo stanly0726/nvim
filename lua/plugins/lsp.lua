@@ -4,8 +4,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         -- LSP Support
-        { 'neovim/nvim-lspconfig' },             -- Required
-        { 'williamboman/mason.nvim' },           -- Optional
+        { 'neovim/nvim-lspconfig' },            -- Required
+        { 'williamboman/mason.nvim' },          -- Optional
         { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
         -- Autocompletion
@@ -112,7 +112,10 @@ return {
         lsp.ensure_installed({
             -- Replace these with whatever servers you want to install
             'rust_analyzer',
-            'lua_ls@3.6.14',
+            'lua_ls',
+            "tsserver",
+            "tailwindcss",
+            "cssls",
         })
 
         lsp.setup()

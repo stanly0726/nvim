@@ -1,6 +1,8 @@
 return {
     'abecodes/tabout.nvim',
-    lazy = false,
+    event = {
+        "BufRead",
+    },
     opts = { ignore_beginning = false },
     dependencies = { 'nvim-treesitter' }
 }

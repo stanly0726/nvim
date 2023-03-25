@@ -74,10 +74,6 @@ local function load_options()
         winminwidth = 10,
         winwidth = 30,
         wrap = false,
-        -- folding
-        foldmethod = "expr",
-        foldexpr = "nvim_treesitter#foldexpr()",
-        foldlevel = 99,
     }
 
     local function isempty(s)

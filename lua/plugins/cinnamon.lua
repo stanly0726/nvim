@@ -6,6 +6,5 @@ return {
         extra_keymaps = true,
         hide_cursor = true,
         max_length = 200,
-        scroll_limit = 100,
     }
 }

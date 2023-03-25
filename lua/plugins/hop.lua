@@ -34,5 +34,6 @@ return {
     },
     opts = {
         create_hl_autocmd = false,
+        keys="hklyuiopnm,qwertzxcvbasdgjf;"
     }
 }

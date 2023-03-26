@@ -25,16 +25,4 @@ return {
             require('nvim-treesitter.configs').setup(opts)
         end
     },
-    {
-        'windwp/nvim-ts-autotag',
-        config = true,
-        ft = {
-            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
-            'rescript',
-            'xml',
-            'php',
-            'markdown',
-            'glimmer', 'handlebars', 'hbs'
-        }
-    }
 }

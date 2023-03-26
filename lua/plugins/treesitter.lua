@@ -1,6 +1,9 @@
 return {
     {
         'nvim-treesitter/nvim-treesitter',
+        dependencies = {
+            'JoosepAlviste/nvim-ts-context-commentstring',
+        },
         build = ':TSUpdate',
         event = { "BufReadPost", "BufNewFile" },
         opts = {
@@ -20,21 +23,13 @@ return {
                 -- Instead of true it can also be a list of languages
                 additional_vim_regex_highlighting = false,
             },
+            context_commentstring = {
+                enable = true,
+                enable_autocmd = false,
+            }
         },
         config = function(_, opts)
             require('nvim-treesitter.configs').setup(opts)
         end
     },
-    {
-        'windwp/nvim-ts-autotag',
-        config = true,
-        ft = {
-            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
-            'rescript',
-            'xml',
-            'php',
-            'markdown',
-            'glimmer', 'handlebars', 'hbs'
-        }
-    }
 }

@@ -6,8 +6,12 @@ return {
             find_files = {
                 no_ignore_parent = true
             }
-        }
+        },
     },
+    config = function(_, opts)
+        require("telescope").setup(opts)
+        require("telescope").load_extension("fzf")
+    end,
     keys = {
         -- find, use to move or navigate through files or buffers
         {
@@ -46,9 +50,6 @@ return {
         {
             'nvim-telescope/telescope-fzf-native.nvim',
             build = 'make',
-            config = function()
-                require("telescope").load_extension("fzf")
-            end
-        }
+        },
     }
 }

@@ -4,14 +4,19 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         -- LSP Support
-        { 'neovim/nvim-lspconfig' },            -- Required
-        { 'williamboman/mason.nvim' },          -- Optional
+        { 'neovim/nvim-lspconfig' },             -- Required
+        { 'williamboman/mason.nvim' },           -- Optional
         { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
         -- Autocompletion
-        { 'hrsh7th/nvim-cmp' },     -- Required
-        { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-        { 'L3MON4D3/LuaSnip' },     -- Required
+        { 'hrsh7th/nvim-cmp' }, -- Required
+        {
+            'hrsh7th/cmp-nvim-lsp',
+            dependencies = {
+                'hrsh7th/cmp-nvim-lsp-signature-help' -- for displaying signature
+            }
+        },                                            -- Required
+        { 'L3MON4D3/LuaSnip' },                       -- Required
         { 'rafamadriz/friendly-snippets' },
 
         -- nvim_cmp_sources
@@ -46,11 +51,12 @@ return {
         require('luasnip.loaders.from_vscode').lazy_load()
         cmp.setup({
             sources = {
+                { name = 'luasnip',                keyword_length = 2 },
                 { name = 'nvim_lsp' },
-                { name = 'luasnip', keyword_length = 2 },
                 { name = "nvim_lua" },
                 { name = 'path' },
-                { name = 'buffer',  keyword_length = 4 },
+                { name = 'buffer',                 keyword_length = 4 },
+                { name = 'nvim_lsp_signature_help' }
             },
             mapping = {
                 ['<C-j>'] = cmp.mapping.select_next_item(),

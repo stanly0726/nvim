@@ -23,7 +23,7 @@ return {
                 hijack_cursor = true,
                 hijack_netrw = true,
                 view = {
-                    width = 30,
+                    width = "20%",
                     hide_root_folder = false,
                 },
                 renderer = {

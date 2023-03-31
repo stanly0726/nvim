@@ -81,7 +81,6 @@ return {
                 },
                 actions = {
                     open_file = {
-                        resize_window = false,
                         window_picker = {
                             enable = true,
                             chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",

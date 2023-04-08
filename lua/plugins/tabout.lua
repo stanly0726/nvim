@@ -3,5 +3,6 @@ return {
     event = {
         "BufRead",
     },
-    dependencies = { 'nvim-treesitter', 'nvim-cmp' }
+    dependencies = { 'nvim-treesitter', 'nvim-cmp' },
+    config = true
 }

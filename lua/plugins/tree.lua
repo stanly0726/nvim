@@ -86,7 +86,6 @@ return {
                             chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
                             exclude = {
                                 filetype = { "notify", "qf", "diff", "fugitive", "fugitiveblame" },
-                                buftype = { "terminal", "help" },
                             },
                         },
                     },

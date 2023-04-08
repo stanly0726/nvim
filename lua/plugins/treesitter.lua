@@ -8,7 +8,7 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         opts = {
             -- A list of parser names, or "all"
-            ensure_installed = { "help", "javascript", "typescript", "c", "lua", "rust" },
+            ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust" },
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
             -- Automatically install missing parsers when entering buffer

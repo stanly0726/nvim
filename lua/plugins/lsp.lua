@@ -37,6 +37,11 @@ return {
         local cmp = require('cmp')
         local luasnip = require("luasnip")
 
+        luasnip.config.set_config({
+            region_check_events = 'InsertEnter',
+            delete_check_events = 'InsertLeave'
+        })
+
         -- set autopairs to work with cmp
         local cmp_autopairs = require('nvim-autopairs.completion.cmp')
         cmp.event:on(

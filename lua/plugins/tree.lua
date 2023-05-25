@@ -102,6 +102,21 @@ return {
                         error = icons.diagnostics.Error_alt,
                     },
                 },
+                on_attach = function(bufnr)
+                    local api = require('nvim-tree.api')
+                    local function opts(desc)
+                        return {
+                            desc = 'nvim-tree: ' .. desc,
+                            buffer = bufnr,
+                            noremap = true,
+                            silent = true,
+                            nowait = true
+                        }
+                    end
+                    api.config.mappings.default_on_attach(bufnr)
+                    -- your removals and mappings go here
+                    vim.keymap.del('n', '<C-e>', opts("harpoon"))
+                end
             }
         )
     end

@@ -127,6 +127,7 @@ return {
             "tsserver",
             "tailwindcss",
             "cssls",
+            "pylsp"
         })
 
         lsp.setup()

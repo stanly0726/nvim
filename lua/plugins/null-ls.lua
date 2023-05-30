@@ -9,7 +9,6 @@ return {
                     extra_args = { "--sort-tailwindcss-classes", "--sort-html-attributes",
                         "--no-multiple-empty-lines" },
                 }),
-                null_ls.builtins.formatting.black,
                 null_ls.builtins.formatting.prettierd,
                 null_ls.builtins.formatting.clang_format,
             },

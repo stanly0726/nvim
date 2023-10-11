@@ -1,5 +1,6 @@
 return {
     'j-hui/fidget.nvim',
+    branch = 'legacy',
     event = "LspAttach",
     opts = function()
         vim.api.nvim_set_hl(0, "FidgetTitle", { link = "Title" })

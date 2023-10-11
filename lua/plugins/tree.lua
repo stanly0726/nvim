@@ -24,7 +24,6 @@ return {
                 hijack_netrw = true,
                 view = {
                     width = "20%",
-                    hide_root_folder = false,
                 },
                 renderer = {
                     group_empty = true,

@@ -7,12 +7,12 @@ local map_callback = bind.map_callback
 local core_map = {
     ["n|<S-Tab>"] = map_cr("normal za"):with_noremap():with_silent():with_desc("editn: Toggle code fold"),
     ["n|<C-s>"] = map_cu("write"):with_noremap():with_silent():with_desc("editn: Save file"),
-    ["n|<leader>pv"] = map_cr("Ex"),
-    ["n|J"] = map_cmd("mzJ`z"):with_noremap(),
+    -- ["n|<leader>pv"] = map_cr("Ex"), // netrw replaced with nvim_tree
+    ["n|J"] = map_cmd("mzJ`z"):with_noremap():with_desc("join line"),
     ["n|n"] = map_cmd("nzzzv"):with_noremap(),
     ["n|N"] = map_cmd("Nzzzv"):with_noremap(),
     ["n|Q"] = map_cmd("<nop>"),
-    ["n|<C-f>"] = map_cmd("<cmd>silent !tmux neww ~/.local/bin/tmux-sessionizer<CR>"),
+    ["n|<C-f>"] = map_cr("silent !tmux neww ~/.local/bin/tmux-sessionizer"),
     ["n|<leader>Y"] = map_cmd([["+Y]]),
     ["n|<leader>f"] = map_callback(function()
         if (vim.bo.filetype == "blade") then

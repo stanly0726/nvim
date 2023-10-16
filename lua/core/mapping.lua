@@ -12,6 +12,7 @@ local core_map = {
     ["n|n"] = map_cmd("nzzzv"):with_noremap(),
     ["n|N"] = map_cmd("Nzzzv"):with_noremap(),
     ["n|Q"] = map_cmd("<nop>"),
+    ["n|q:"] = map_cmd("<nop>"),
     ["n|<C-f>"] = map_cr("silent !tmux neww ~/.local/bin/tmux-sessionizer"),
     ["n|<leader>Y"] = map_cmd([["+Y]]),
     ["n|<leader>f"] = map_callback(function()

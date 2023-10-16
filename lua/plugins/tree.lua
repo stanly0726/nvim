@@ -2,7 +2,7 @@ return {
     "nvim-tree/nvim-tree.lua",
     version = "*",
     dependencies = {
-        "nvim-tree/nvim-web-devicons",
+        'nvim-lualine/lualine.nvim',
     },
     keys = {
         { '<leader>e', "<cmd>NvimTreeToggle<cr>" }
@@ -21,7 +21,7 @@ return {
         require("nvim-tree").setup(
             {
                 hijack_cursor = true,
-                hijack_netrw = true,
+                disable_netrw = true,
                 view = {
                     width = "20%",
                 },
@@ -69,6 +69,10 @@ return {
                             },
                         },
                     },
+                },
+                git = {
+                    enable = true,
+                    ignore = false
                 },
                 update_focused_file = {
                     enable = true,

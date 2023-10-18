@@ -6,7 +6,7 @@ return {
     opts = {
         options = {
             icons_enabled = true,
-            theme = 'nord',
+            theme = require('core.setting')['colorscheme'],
             disabled_filetypes = { 'NvimTree' },
             ignore_focus = { 'NvimTree' },
         },

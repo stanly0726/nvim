@@ -28,8 +28,8 @@ local core_map = {
     ["n|<leader>j"] = map_cmd("<cmd>lnext<CR>zz"),
     ["x|<leader>p"] = map_cmd([["_dP"]]):with_desc("Paste without replacing register content"),
     -- Visual mode
-    ["v|J"] = map_cmd(":m '>+1<CR>gv=gv"):with_desc("Move selected lines down"),
-    ["v|K"] = map_cmd(":m '<-2<CR>gv=gv"):with_desc("Move selected lines up"),
+    ["v|N"] = map_cmd(":m '>+1<CR>gv=gv"):with_desc("Move selected lines down"),
+    ["v|E"] = map_cmd(":m '<-2<CR>gv=gv"):with_desc("Move selected lines up"),
     ["v|<leader>y"] = map_cmd([["+y]]):with_desc("Yank to system clipboard"),
     ["v|<leader>d"] = map_cmd([["_d]]):with_desc("Delete without replacing register content"),
 }

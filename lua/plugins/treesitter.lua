@@ -23,13 +23,18 @@ return {
                 -- Instead of true it can also be a list of languages
                 additional_vim_regex_highlighting = false,
             },
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
-            }
         },
         config = function(_, opts)
             require('nvim-treesitter.configs').setup(opts)
         end
     },
+    {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+        config = function()
+            vim.g.skip_ts_context_commentstring_module = true
+            require('ts_context_commentstring').setup {
+                enable_autocmd = false,
+            }
+        end
+    }
 }

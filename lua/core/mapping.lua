@@ -22,8 +22,10 @@ local core_map = {
             vim.lsp.buf.format({ async = true })
         end
     end),
-    ["n|<C-k>"] = map_cmd("<cmd>cprev<CR>zz"),
-    ["n|<C-j>"] = map_cmd("<cmd>cnext<CR>zz"),
+    -- ["n|<C-k>"] = map_cmd("<cmd>cprev<CR>zz"),
+    -- ["n|<C-j>"] = map_cmd("<cmd>cnext<CR>zz"),
+    ["n|<Home>"] = map_cmd("<cmd>cprev<CR>zz"),
+    ["n|<End>"] = map_cmd("<cmd>cnext<CR>zz"),
     ["n|<leader>k"] = map_cmd("<cmd>lprev<CR>zz"),
     ["n|<leader>j"] = map_cmd("<cmd>lnext<CR>zz"),
     ["x|<leader>p"] = map_cmd([["_dP"]]):with_desc("Paste without replacing register content"),

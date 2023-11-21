@@ -1,15 +1,11 @@
 return {
     'j-hui/fidget.nvim',
-    branch = 'legacy',
     event = "LspAttach",
-    opts = function()
-        vim.api.nvim_set_hl(0, "FidgetTitle", { link = "Title" })
-        vim.api.nvim_set_hl(0, "FidgetTask", { link = "LineNr" })
-
-        return {
+    opts = {
+        notification = {
             window = {
-                blend = 0,
+                winblend = 0,
             }
         }
-    end
+    }
 }

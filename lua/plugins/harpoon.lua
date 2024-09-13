@@ -8,7 +8,7 @@ return {
     end,
     keys = {
         { '<leader>a', function()
-            require("harpoon"):list():append()
+            require("harpoon"):list():add()
         end },
         { '<C-j>', function()
             local harpoon = require("harpoon")

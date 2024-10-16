@@ -151,7 +151,7 @@ return {
                 ensure_installed = {
                     'rust_analyzer',
                     'lua_ls',
-                    "tsserver",
+                    "ts_ls",
                     "tailwindcss",
                     "cssls",
                     "pylsp"
@@ -174,8 +174,8 @@ return {
                             }
                         })
                     end,
-                    tsserver = function()
-                        require('lspconfig').tsserver.setup({
+                    ts_ls = function()
+                        require('lspconfig').ts_ls.setup({
                             settings = {
                                 typescript = {
                                     format = {

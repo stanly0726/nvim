@@ -30,7 +30,9 @@ return {
         config = function()
             local nordic = require('nordic')
             nordic.setup({
-                transparent_bg = true,
+                transparent = {
+                    bg = true
+                }
             })
             nordic.load()
         end

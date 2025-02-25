@@ -1,5 +1,6 @@
 return {
     "nvim-tree/nvim-tree.lua",
+    enabled = false,
     version = "*",
     dependencies = {
         'nvim-lualine/lualine.nvim',

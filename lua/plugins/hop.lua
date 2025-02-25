@@ -1,5 +1,6 @@
 return {
     'smoka7/hop.nvim',
+    enabled = false,
     event = "BufReadPost",
     keys = {
         { ',', function()

@@ -48,6 +48,7 @@ local load_core = function()
     -- require("keymap")
     require("core.event")
     require("core.lazy")
+    require("core.filetype")
 
     local colorscheme = require("core.setting").colorscheme
     local background = require("core.setting").background

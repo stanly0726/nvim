@@ -13,7 +13,7 @@ local core_map = {
     ["n|N"] = map_cmd("Nzzzv"):with_noremap(),
     ["n|Q"] = map_cmd("<nop>"),
     ["n|q:"] = map_cmd("<nop>"),
-    ["n|<C-f>"] = map_cr("silent !tmux neww ~/.local/bin/tmux-sessionizer"),
+    ["n|<C-f>"] = map_cr("!tmux neww ~/.local/bin/tmux-sessionizer<CR>"):with_silent():with_desc("tmux-sessionizer"),
     ["n|<leader>Y"] = map_cmd([["+Y]]),
     ["n|<leader>f"] = map_callback(function()
         if (vim.bo.filetype == "blade") then
@@ -21,9 +21,9 @@ local core_map = {
         else
             vim.lsp.buf.format({ async = true })
         end
-    end),
-    -- ["n|<C-k>"] = map_cmd("<cmd>cprev<CR>zz"),
-    -- ["n|<C-j>"] = map_cmd("<cmd>cnext<CR>zz"),
+    end):with_desc("format"),
+    ["n|<C-k>"] = map_cmd("<cmd>cprev<CR>zz"),
+    ["n|<C-j>"] = map_cmd("<cmd>cnext<CR>zz"),
     ["n|<Home>"] = map_cmd("<cmd>cprev<CR>zz"),
     ["n|<End>"] = map_cmd("<cmd>cnext<CR>zz"),
     ["n|<leader>k"] = map_cmd("<cmd>lprev<CR>zz"),

@@ -19,7 +19,7 @@ return {
         lazy = false,
         priority = 1000,
         opts = {
-            transparent = true,
+            transparent = not vim.g.neovide,
             errors = { mode = "fg" },
         },
     },
@@ -31,8 +31,8 @@ return {
             local nordic = require('nordic')
             nordic.setup({
                 transparent = {
-                    bg = true
-                }
+                    bg = not vim.g.neovide,
+                },
             })
             nordic.load()
         end

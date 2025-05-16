@@ -10,13 +10,11 @@ return {
         lazy = false,
         opts = {},
     },
-
     -- Autocompletion
     {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
         dependencies = {
-            { 'hrsh7th/cmp-nvim-lsp' },
             {
                 'L3MON4D3/LuaSnip',
                 dependencies = {
@@ -44,7 +42,7 @@ return {
             luasnip.config.set_config({
                 region_check_events = 'InsertEnter',
                 delete_check_events = 'InsertLeave'
-            })
+             })
             -- set autopairs to work with cmp
             cmp.event:on(
                 'confirm_done',
@@ -67,8 +65,8 @@ return {
                     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
                     ['<C-f>'] = lsp_zero.cmp_action().vim_snippet_jump_forward(),
                     ['<C-p>'] = cmp.mapping.abort(),
-                    ['<Up>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
-                    ['<Down>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
+                    -- ['<Up>'] = cmp.mapping.select_prev_item({ behavior = 'select' }),
+                    -- ['<Down>'] = cmp.mapping.select_next_item({ behavior = 'select' }),
                     ['<C-e>'] = cmp.mapping(function()
                         if cmp.visible() then
                             cmp.select_prev_item({ behavior = 'select' })
@@ -127,7 +125,8 @@ return {
                 },
                 handlers = {
                     function(server_name)
-                        vim.lsp.inlay_hint.enable();
+                        vim.lsp.inlay_hint.enable()
+                        -- vim.diagnostic.config({ virtual_text = true })
                         require('lspconfig')[server_name].setup({})
                     end,
                     lua_ls = function()

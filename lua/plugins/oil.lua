@@ -3,6 +3,7 @@ return {
     lazy = false,
     opts = {
         -- default_file_explorer = false,
+        delete_to_trash = true,
     },
     cmd = { 'Oil' },
     keys = { { "-", "<cmd>Oil<cr>" } },

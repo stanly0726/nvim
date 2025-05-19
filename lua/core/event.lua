@@ -13,6 +13,36 @@ function autocmd.nvim_create_augroups(definitions)
     end
 end
 
+-- auto close some filetype with <q>
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {
+        "qf",
+        "help",
+        "man",
+        "notify",
+        "nofile",
+        "lspinfo",
+        "terminal",
+        "prompt",
+        "toggleterm",
+        "copilot",
+        "startuptime",
+        "tsplayground",
+        "PlenaryTestPopup",
+    },
+    callback = function(event)
+        vim.bo[event.buf].buflisted = false
+        vim.api.nvim_buf_set_keymap(event.buf, "n", "q", "<Cmd>close<CR>", { silent = true })
+    end,
+})
+
+-- auto cd into pwd argument
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        vim.print(vim.v.argv)
+    end,
+})
+
 function autocmd.load_autocmds()
     local definitions = {
         lazy = {},
@@ -41,27 +71,28 @@ function autocmd.load_autocmds()
                 "*",
                 [[if &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal nocursorline | endif]],
             },
-            -- Force write shada on leaving nvim
+            -- Attempt to write shada when leaving nvim
             {
                 "VimLeave",
                 "*",
-                [[if has('nvim') | wshada! | else | wviminfo! | endif]],
+                [[if has('nvim') | wshada | else | wviminfo! | endif]],
             },
             -- Check if file changed when its window is focus, more eager than 'autoread'
-            { "FocusGained", "* checktime" },
+            { "FocusGained", "*", "checktime" },
             -- Equalize window dimensions when resizing vim window
-            { "VimResized",  "*",          [[tabdo wincmd =]] },
+            { "VimResized",  "*", [[tabdo wincmd =]] },
+            -- Change directory when passing argument into nvim
         },
         ft = {
-            { "FileType", "markdown", "set wrap" },
-            { "FileType", "make",     "set noexpandtab shiftwidth=8 softtabstop=0" },
+            { "FileType", "*",        "setlocal formatoptions-=cro" },
+            { "FileType", "alpha",    "setlocal showtabline=0" },
+            { "FileType", "markdown", "setlocal wrap" },
             { "FileType", "dap-repl", "lua require('dap.ext.autocompl').attach()" },
             {
                 "FileType",
-                "*",
-                [[setlocal formatoptions-=cro]],
+                "c,cpp",
+                "nnoremap <leader>h :ClangdSwitchSourceHeaderVSplit<CR>",
             },
-            { "FileType", "html,javascriptreact,typescriptreact", "setlocal tabstop=2 shiftwidth=2 softtabstop=2" },
         },
         yank = {
             {
@@ -71,24 +102,7 @@ function autocmd.load_autocmds()
             },
         },
     }
-
     autocmd.nvim_create_augroups(definitions)
 end
 
 autocmd.load_autocmds()
-
--- start nvim-tree on start
-local function open_nvim_tree(data)
-    -- buffer is a directory
-    local directory = vim.fn.isdirectory(data.file) == 1
-
-    if not directory then
-        return
-    end
-    -- change to the directory
-    vim.cmd.cd(data.file)
-    -- open the tree
-    require("nvim-tree.api").tree.open()
-end
-
--- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })

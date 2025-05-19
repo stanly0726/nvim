@@ -1,36 +1,46 @@
-local global = require('core.global')
+local settings = require("core.settings")
+local global = require("core.global")
 
-local map_leader = function()
+local leader_map = function()
     vim.g.mapleader = " "
     vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
     vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
 end
 
-local disable_distribution_plugins = function()
-    -- disable netrw for nvim-tree
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-    -- vim.g.netrw_liststyle = 3
+local gui_config = function()
+    if next(settings.gui_config) then
+        vim.api.nvim_set_option_value(
+            "guifont",
+            settings.gui_config.font_name .. ":h" .. settings.gui_config.font_size,
+            {}
+        )
+    end
+end
+
+local neovide_config = function()
+    for name, config in pairs(settings.neovide_config) do
+        vim.g["neovide_" .. name] = config
+    end
 end
 
 local clipboard_config = function()
     if global.is_mac then
         vim.g.clipboard = {
             name = "macOS-clipboard",
-            copy = { ["+"] = "pbcopy",["*"] = "pbcopy" },
-            paste = { ["+"] = "pbpaste",["*"] = "pbpaste" },
+            copy = { ["+"] = "pbcopy", ["*"] = "pbcopy" },
+            paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
             cache_enabled = 0,
         }
     elseif global.is_wsl then
         vim.g.clipboard = {
-            name = 'WslClipboard',
+            name = "win32yank-wsl",
             copy = {
-                ['+'] = 'clip.exe',
-                ['*'] = 'clip.exe',
+                ["+"] = "win32yank.exe -i --crlf",
+                ["*"] = "win32yank.exe -i --crlf",
             },
             paste = {
-                ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-                ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+                ["+"] = "win32yank.exe -o --lf",
+                ["*"] = "win32yank.exe -o --lf",
             },
             cache_enabled = 0,
         }
@@ -38,22 +48,20 @@ local clipboard_config = function()
 end
 
 local load_core = function()
-    disable_distribution_plugins()
-    map_leader()
+    leader_map()
 
+    gui_config()
+    neovide_config()
     clipboard_config()
 
     require("core.options")
-    require("core.mapping")
-    -- require("keymap")
     require("core.event")
     require("core.lazy")
     require("core.filetype")
+    require("keymap")
 
-    local colorscheme = require("core.setting").colorscheme
-    local background = require("core.setting").background
-    vim.api.nvim_command("set background=" .. background)
-    vim.api.nvim_command("colorscheme " .. colorscheme)
+    vim.api.nvim_set_option_value("background", settings.background, {})
+    vim.cmd.colorscheme(settings.colorscheme)
 end
 
 load_core()

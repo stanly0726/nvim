@@ -1,14 +1,13 @@
+local settings = require("core.settings")
+
 return {
     {
         'nvim-treesitter/nvim-treesitter',
-        dependencies = {
-            'JoosepAlviste/nvim-ts-context-commentstring',
-        },
         build = ':TSUpdate',
         event = { "BufReadPost", "BufNewFile" },
         opts = {
             -- A list of parser names, or "all"
-            ensure_installed = { "vimdoc", "javascript", "typescript", "c", "lua", "rust" },
+            ensure_installed = settings.treesitter_deps,
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
             -- Automatically install missing parsers when entering buffer
@@ -28,13 +27,5 @@ return {
             require('nvim-treesitter.configs').setup(opts)
         end
     },
-    {
-        'JoosepAlviste/nvim-ts-context-commentstring',
-        config = function()
-            vim.g.skip_ts_context_commentstring_module = true
-            require('ts_context_commentstring').setup {
-                enable_autocmd = false,
-            }
-        end
-    }
 }
+

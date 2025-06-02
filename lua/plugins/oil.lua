@@ -3,8 +3,8 @@ return {
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {
-    	-- default_file_explorer = false,
-    	delete_to_trash = true,
+        -- default_file_explorer = false,
+        delete_to_trash = true,
     },
     keys = { { "-", "<cmd>Oil<cr>" } },
     -- Optional dependencies

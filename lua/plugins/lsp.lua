@@ -4,7 +4,14 @@ return {
     {
         "mason-org/mason-lspconfig.nvim",
         event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-        dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
+        dependencies = {
+            {
+                "mason-org/mason.nvim",
+                config = true,
+                cmd = 'Mason',
+            },
+            { "neovim/nvim-lspconfig" }
+        },
         config = function()
             local diagnostics_virtual_lines = settings.diagnostics_virtual_lines
             local diagnostics_level = settings.diagnostics_level
@@ -24,6 +31,4 @@ return {
             }
         end
     },
-    { "mason-org/mason.nvim", config = true },
-    { "neovim/nvim-lspconfig" },
 }

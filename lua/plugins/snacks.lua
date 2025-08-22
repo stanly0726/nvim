@@ -9,7 +9,12 @@ return {
                 enabled = false
             }
         },
-        scroll = {},
+        scroll = {
+            enabled = vim.g.neovide,
+            animate = {
+                easing = "outSine",
+            } 
+        },
     },
     keys = {
         { "<leader>ff", function() Snacks.picker.smart() end,       desc = "Find: file" },

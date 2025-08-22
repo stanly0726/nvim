@@ -1,5 +1,3 @@
-local settings = require("core.settings")
-
 return {
     {
         "mason-org/mason-lspconfig.nvim",
@@ -13,8 +11,11 @@ return {
             { "neovim/nvim-lspconfig" }
         },
         config = function()
+            local settings = require("core.settings")
+            
             local diagnostics_virtual_lines = settings.diagnostics_virtual_lines
             local diagnostics_level = settings.diagnostics_level
+            local inlay_hint = settings.lsp_inlayhints
 
             require("mason-lspconfig").setup {
                 ensure_installed = settings.lsp_deps
@@ -29,6 +30,7 @@ return {
                     },
                 } or false,
             }
+            vim.lsp.inlay_hint.enable(inlay_hint)
         end
     },
 }

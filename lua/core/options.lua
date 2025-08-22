@@ -16,7 +16,7 @@ local function load_options()
         fileformats = "unix,mac,dos",
         foldlevelstart = 99,
         foldmethod = "expr",
-        foldexpr = "nvim_treesitter#foldexpr()",
+        foldexpr = "v:lua.vim.treesitter.foldexpr()",
         formatoptions = "1jcroql",
         grepformat = "%f:%l:%c:%m",
         grepprg = "rg --hidden --vimgrep --smart-case --",
@@ -84,6 +84,8 @@ local function load_options()
 end
 
 -- Newtrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.g.netrw_liststyle = 3
 
 load_options()

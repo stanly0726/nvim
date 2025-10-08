@@ -5,7 +5,7 @@ local function load_options()
         breakat = [[\ \	;:,!?]],
         breakindentopt = "shift:2,min:20",
         cmdwinheight = 5,
-        cmdheight = 1,
+        cmdheight = 0,
         complete = ".,w,b,k,kspell",
         completeopt = "fuzzy,menuone,noselect,popup",
         cursorline = true,

@@ -27,6 +27,5 @@ return {
         { "<leader>ss", function() Snacks.picker() end,             desc = "Snacks picker" },
         { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Snacks diagnostics" },
         { "<leader>e",  function() Snacks.explorer() end,           desc = "Explorer" },
-        { "<leader>gg", function() Snacks.lazygit() end,            { desc = "Lazygit" } },
     },
 }

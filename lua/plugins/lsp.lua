@@ -12,7 +12,7 @@ return {
         },
         config = function()
             local settings = require("core.settings")
-            
+
             local diagnostics_virtual_lines = settings.diagnostics_virtual_lines
             local diagnostics_level = settings.diagnostics_level
             local inlay_hint = settings.lsp_inlayhints
@@ -23,7 +23,7 @@ return {
 
             vim.diagnostic.config {
                 signs = true,
-                virtual_text = true,
+                virtual_text = not diagnostics_virtual_lines,
                 virtual_lines = diagnostics_virtual_lines and {
                     severity = {
                         min = vim.diagnostic.severity[diagnostics_level],

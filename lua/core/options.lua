@@ -46,6 +46,7 @@ local function load_options()
         smoothscroll = true,
         splitbelow = true,
         splitright = true,
+        swapfile = false,
         switchbuf = "usetab,uselast",
         softtabstop = 4,
         tabstop = 4,

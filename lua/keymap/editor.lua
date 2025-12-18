@@ -14,6 +14,12 @@ local mappings = {
     ["n|<C-f>"] = map_cr("!tmux neww ~/.local/bin/tmux-sessionizer<CR>"):with_silent():with_desc("tmux-sessionizer"),
     ["n|<leader>Y"] = map_cmd([["+Y]]):with_desc("yank into system clipboard"),
 
+    -- window movement
+    ["n|<C-Left>"] = map_cmd("<C-w>h"):with_desc("editn: move to window left"),
+    ["n|<C-Down>"] = map_cmd("<C-w>j"):with_desc("editn: move to window below"),
+    ["n|<C-Up>"] = map_cmd("<C-w>k"):with_desc("editn: move to window above"),
+    ["n|<C-Right>"] = map_cmd("<C-w>l"):with_desc("editn: move to window right"),
+
     -- homerow mapping for colemak
     ["n|<A-m>"] = map_cmd("h"),
     ["n|<A-n>"] = map_cmd("j"),

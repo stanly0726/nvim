@@ -6,7 +6,7 @@ return {
         -- default_file_explorer = false,
         delete_to_trash = true,
     },
-    keys = { { "-", "<cmd>Oil<cr>" } },
+    keys = { { "-", "<cmd>Oil<cr>", desc = "Oil: open oil menu" } },
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons

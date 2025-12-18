@@ -38,6 +38,7 @@ bind.nvim_load_mapping(mappings.core)
 -- Builtin & Plugin keymaps
 -- require("keymap.completion")
 require("keymap.editor")
+require("keymap.terminal")
 -- require("keymap.lang")
 -- require("keymap.tool")
 -- require("keymap.ui")

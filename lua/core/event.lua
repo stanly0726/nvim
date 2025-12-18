@@ -125,6 +125,9 @@ function autocmd.load_autocmds()
                 [[silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=300})]],
             },
         },
+        term = {
+            { "TermOpen", "term://*toggleterm#*", "lua set_terminal_keymaps()" }
+        }
     }
     autocmd.nvim_create_augroups(definitions)
 end

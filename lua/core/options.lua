@@ -58,6 +58,7 @@ local function load_options()
         updatetime = 200,
         virtualedit = "block",
         visualbell = true,
+        winborder = "rounded",
         winminwidth = 10,
         wrap = false,
     }

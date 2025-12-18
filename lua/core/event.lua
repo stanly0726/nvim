@@ -38,6 +38,15 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Start treesitter for installed parsers
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = settings.treesitter_deps,
+
+    callback = function(args)
+        vim.treesitter.start(args.buf)
+    end,
+})
+
 -- -- auto cd into pwd argument
 -- vim.api.nvim_create_autocmd("VimEnter", {
 --     callback = function()

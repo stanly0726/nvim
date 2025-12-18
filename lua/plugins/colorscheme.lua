@@ -1,16 +1,6 @@
 local settings = require("core.settings")
 
 return {
-    -- {
-    --     'shaunsingh/nord.nvim',
-    --     config = function()
-    --         vim.g.nord_disable_background = settings.transparent_background
-    --         vim.g.nord_italic = false
-    --
-    --         -- Load the colorscheme
-    --         require('nord').set()
-    --     end
-    -- },
     {
         "gbprod/nord.nvim",
         opts = {
@@ -18,16 +8,28 @@ return {
             errors = { mode = "fg" },
         },
     },
-    -- {
-    --     'AlexvZyl/nordic.nvim',
-    --     config = function()
-    --         local nordic = require('nordic')
-    --         nordic.setup({
-    --             transparent = {
-    --                 bg = settings.transparent_background,
-    --             },
-    --         })
-    --         nordic.load()
-    --     end
-    -- }
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            transparent = settings.transparent_background,
+            background = {
+                light = "lotus",
+                dark = "dragon"
+            },
+        }
+    },
+    {
+        'AlexvZyl/nordic.nvim',
+        config = function()
+            local nordic = require('nordic')
+            nordic.setup({
+                transparent = {
+                    bg = settings.transparent_background,
+                },
+            })
+            nordic.load({})
+        end
+    }
 }

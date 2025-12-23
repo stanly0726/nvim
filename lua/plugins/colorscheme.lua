@@ -9,18 +9,6 @@ return {
         },
     },
     {
-        "rebelot/kanagawa.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {
-            transparent = settings.transparent_background,
-            background = {
-                light = "lotus",
-                dark = "dragon"
-            },
-        }
-    },
-    {
         'AlexvZyl/nordic.nvim',
         config = function()
             local nordic = require('nordic')
@@ -30,6 +18,29 @@ return {
                 },
             })
             nordic.load({})
+        end
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        opts = {
+            compile = true,
+            transparent = settings.transparent_background,
+            background = {
+                light = "lotus",
+                dark = "dragon"
+            },
+        }
+    },
+    {
+        'sainnhe/everforest',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            -- Optionally configure and load the colorscheme
+            -- directly inside the plugin declaration.
+            vim.g.everforest_enable_italic = true
+            vim.g.everforest_transparent_background = settings.transparent_background
+            vim.g.everforest_background = "medium"
         end
     }
 }

@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
     "jake-stewart/auto-cmdheight.nvim",
     lazy = false,

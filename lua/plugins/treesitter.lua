@@ -1,5 +1,7 @@
 local settings = require("core.settings")
 
+---@module "lazy"
+---@type LazySpec
 return {
     'nvim-treesitter/nvim-treesitter',
     lazy = false,

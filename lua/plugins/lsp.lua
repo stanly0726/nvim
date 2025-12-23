@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
     {
         "mason-org/mason-lspconfig.nvim",

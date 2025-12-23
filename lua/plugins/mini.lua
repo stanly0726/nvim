@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazySpec
 return {
     { 'echasnovski/mini.icons',    version = false,    config = true },
     { 'echasnovski/mini.ai',       event = 'VeryLazy', version = false, config = true },

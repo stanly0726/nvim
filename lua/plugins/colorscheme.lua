@@ -1,5 +1,7 @@
 local settings = require("core.settings")
 
+---@module "lazy"
+---@type LazySpec
 return {
     {
         "gbprod/nord.nvim",

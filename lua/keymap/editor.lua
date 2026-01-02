@@ -20,6 +20,8 @@ local mappings = {
     ["n|<C-Up>"] = map_cmd("<C-w>k"):with_desc("editn: move to window above"),
     ["n|<C-Right>"] = map_cmd("<C-w>l"):with_desc("editn: move to window right"),
 
+    ["n|<C-w>v"] = map_cr("vnew"):with_desc("editn: new buffer(vertical)"),
+
     -- homerow mapping for colemak
     ["n|<A-m>"] = map_cmd("h"):with_desc("editn: move left (colemak)"),
     ["n|<A-n>"] = map_cmd("j"):with_desc("editn: move down (colemak)"),
@@ -34,6 +36,7 @@ local mappings = {
     ["n|<End>"] = map_cmd("<cmd>cnext<CR>zz"):with_desc("quickfix: next item"),
     ["n|<leader>k"] = map_cmd("<cmd>lprev<CR>zz"):with_desc("Next Location List"),
     ["n|<leader>j"] = map_cmd("<cmd>lnext<CR>zz"):with_desc("Next Location List"),
+
     -- Visual mode
     ["v|N"] = map_cmd(":m '>+1<CR>gv=gv"):with_desc("Move selected lines down"),
     ["v|E"] = map_cmd(":m '<-2<CR>gv=gv"):with_desc("Move selected lines up"),

@@ -1,7 +1,7 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-    "ggandor/leap.nvim",
+    "https://codeberg.org/andyg/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
     config = function()
         vim.keymap.set({ 'n', 'x', 'o' }, ',', '<Plug>(leap)', { desc = "leap" })

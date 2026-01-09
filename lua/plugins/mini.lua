@@ -1,15 +1,12 @@
 ---@module "lazy"
 ---@type LazySpec
 return {
-    { 'echasnovski/mini.icons',    version = false,    config = true },
-    { 'echasnovski/mini.ai',       event = 'VeryLazy', version = false, config = true },
-    { 'echasnovski/mini.surround', event = 'VeryLazy', version = false, config = true },
-    {
-        'echasnovski/mini.pairs',
-        version = false,
-        event = 'VeryLazy',
-        opts = {
-            modes = { command = true }
-        }
-    },
+    'nvim-mini/mini.nvim',
+    version = false,
+    config = function()
+        require('mini.icons').setup()
+        require('mini.ai').setup()
+        require('mini.surround').setup()
+        require('mini.pairs').setup({ modes = { command = true } })
+    end
 }

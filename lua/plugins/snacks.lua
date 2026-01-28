@@ -4,6 +4,7 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    ---@type snacks.Config
     opts = {
         picker = {},
         indent = {
@@ -12,22 +13,27 @@ return {
             }
         },
         scroll = {
-            enabled = vim.g.neovide,
             animate = {
-                easing = "outSine",
-            } 
+                easing = "inOutSine",
+            }
+        },
+        statuscolumn = {
+            folds = {
+                open = true,
+            },
         },
     },
     keys = {
-        { "<leader>ff", function() Snacks.picker.smart() end,       desc = "Find: file" },
-        { "<leader>fb", function() Snacks.picker.buffers() end,     desc = "Find: Buffers" },
+        { "<leader>ff", function() Snacks.picker.files() end,                      desc = "Find: file" },
+        { "<leader>fb", function() Snacks.picker.buffers() end,                    desc = "Find: Buffers" },
 
-        { "<leader>sh", function() Snacks.picker.help() end,        desc = "Search: Help Pages" },
-        { "<leader>sk", function() Snacks.picker.keymaps() end,     desc = "Search: Keymaps" },
-        { "<leader>sw", function() Snacks.picker.grep() end,        desc = "Search: Word(workspace)" },
+        { "<leader>sh", function() Snacks.picker.help() end,                       desc = "Search: Help Pages" },
+        { "<leader>sk", function() Snacks.picker.keymaps() end,                    desc = "Search: Keymaps" },
+        { "<leader>sw", function() Snacks.picker.grep({ hidden = true }) end,      desc = "Search: Word(workspace)" },
+        { "<leader>sW", function() Snacks.picker.grep_word({ hidden = true }) end, desc = "Search: Word Under Cursor(workspace)" },
 
-        { "<leader>ss", function() Snacks.picker() end,             desc = "Snacks picker" },
-        { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Snacks diagnostics" },
-        { "<leader>e",  function() Snacks.explorer() end,           desc = "Explorer" },
+        { "<leader>ss", function() Snacks.picker() end,                            desc = "Snacks picker" },
+        { "<leader>sd", function() Snacks.picker.diagnostics() end,                desc = "Snacks diagnostics" },
+        { "<leader>e",  function() Snacks.explorer() end,                          desc = "Explorer" },
     },
 }

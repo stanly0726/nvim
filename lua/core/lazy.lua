@@ -25,14 +25,22 @@ require("lazy").setup({
     install = {
         colorscheme = { settings.colorscheme }
     },
+    rocks = {
+        enabled = false
+    },
+    change_detection = {
+        notify = false
+    },
     performance = {
         rtp = {
             disable_plugins = {
+                "editorconfig",
                 "spellfile",
                 "tohtml",
                 "gzip",
                 "tarPlugin",
                 "zipPlugin",
+                "rplugin"
             }
         }
     }

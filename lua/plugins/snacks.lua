@@ -6,7 +6,16 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-        picker = {},
+        picker = {
+            sources = {
+                git_log = {
+                    confirm = function(picker, item)
+                        picker:close()
+                        require("gitsigns").show_commit(item.commit)
+                    end
+                }
+            }
+        },
         indent = {
             animate = {
                 enabled = false
@@ -19,6 +28,7 @@ return {
         },
         statuscolumn = {
             folds = {
+                git_hl = true,
                 open = true,
             },
         },

@@ -37,6 +37,10 @@ local mappings = {
     ["n|<leader>k"] = map_cmd("<cmd>lprev<CR>zz"):with_desc("Next Location List"),
     ["n|<leader>j"] = map_cmd("<cmd>lnext<CR>zz"):with_desc("Next Location List"),
 
+    -- tab navigation
+    ["n|<C-PageDown>"] = map_cr("tabnext"):with_desc("editn: move to next tab"),
+    ["n|<C-PageUp>"] = map_cr("tabprevious"):with_desc("editn: move to previous tab"),
+
     -- Visual mode
     ["v|N"] = map_cmd(":m '>+1<CR>gv=gv"):with_desc("Move selected lines down"),
     ["v|E"] = map_cmd(":m '<-2<CR>gv=gv"):with_desc("Move selected lines up"),

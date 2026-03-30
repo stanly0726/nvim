@@ -14,6 +14,8 @@ return {
             max_width = 0.6,
         },
         keymaps = {
+            ["<C-s>"] = false,
+            ["<C-v>"] = { "actions.select", opts = { vertical = true } },
             ["gd"] = {
                 desc = "Toggle file detail view",
                 callback = function()

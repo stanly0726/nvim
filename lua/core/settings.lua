@@ -81,6 +81,7 @@ settings["treesitter_deps"] = {
     "java",
     "javascript",
     "json",
+    "kotlin",
     "latex",
     "lua",
     "make",
@@ -100,7 +101,7 @@ settings["treesitter_deps"] = {
 ---@type { font_name: string, font_size: number }
 settings["gui_config"] = {
     font_name = "Iosevka Term Extended",
-    font_size = 12,
+    font_size = 18,
 }
 
 -- Set the options specific to `neovide` here.

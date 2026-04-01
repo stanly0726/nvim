@@ -54,12 +54,11 @@ local load_core = function()
 
     require("core.options")
     require("core.event")
-    require("core.lazy")
     require("core.filetype")
     require("keymap")
 
     vim.api.nvim_set_option_value("background", settings.background, {})
-    vim.cmd.colorscheme(settings.colorscheme)
+    -- vim.cmd.colorscheme(settings.colorscheme)
 end
 
 load_core()

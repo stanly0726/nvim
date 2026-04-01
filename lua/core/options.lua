@@ -33,7 +33,7 @@ local function load_options()
         shada = "!,'500,<50,@100,s10,h",
         shiftround = true,
         shiftwidth = 4,
-        shortmess = "aoOTIcF",
+        shortmess = "aoOTcF",
         showbreak = "↳  ",
         showmode = false,
         sidescrolloff = 10,

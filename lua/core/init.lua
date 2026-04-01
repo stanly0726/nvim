@@ -2,9 +2,7 @@ local settings = require("core.settings")
 local global = require("core.global")
 
 local leader_map = function()
-    vim.g.mapleader = " "
-    vim.api.nvim_set_keymap("n", " ", "", { noremap = true })
-    vim.api.nvim_set_keymap("x", " ", "", { noremap = true })
+    vim.g.mapleader = settings["leader_key"]
 end
 
 local gui_config = function()

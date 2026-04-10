@@ -1,64 +1,64 @@
-local settings = require("core.settings")
-local global = require("core.global")
+local settings = require('core.settings')
+local global = require('core.global')
 
 local leader_map = function()
-    vim.g.mapleader = settings["leader_key"]
+  vim.g.mapleader = settings['leader_key']
 end
 
 local gui_config = function()
-    if next(settings.gui_config) then
-        vim.api.nvim_set_option_value(
-            "guifont",
-            settings.gui_config.font_name .. ":h" .. settings.gui_config.font_size,
-            {}
-        )
-    end
+  if next(settings.gui_config) then
+    vim.api.nvim_set_option_value(
+      'guifont',
+      settings.gui_config.font_name .. ':h' .. settings.gui_config.font_size,
+      {}
+    )
+  end
 end
 
 local neovide_config = function()
-    for name, config in pairs(settings.neovide_config) do
-        vim.g["neovide_" .. name] = config
-    end
+  for name, config in pairs(settings.neovide_config) do
+    vim.g['neovide_' .. name] = config
+  end
 end
 
 local clipboard_config = function()
-    if global.is_mac then
-        vim.g.clipboard = {
-            name = "macOS-clipboard",
-            copy = { ["+"] = "pbcopy", ["*"] = "pbcopy" },
-            paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
-            cache_enabled = 0,
-        }
-    elseif global.is_wsl then
-        vim.g.clipboard = {
-            name = "win32yank-wsl",
-            copy = {
-                ["+"] = "win32yank.exe -i --crlf",
-                ["*"] = "win32yank.exe -i --crlf",
-            },
-            paste = {
-                ["+"] = "win32yank.exe -o --lf",
-                ["*"] = "win32yank.exe -o --lf",
-            },
-            cache_enabled = 0,
-        }
-    end
+  if global.is_mac then
+    vim.g.clipboard = {
+      name = 'macOS-clipboard',
+      copy = { ['+'] = 'pbcopy', ['*'] = 'pbcopy' },
+      paste = { ['+'] = 'pbpaste', ['*'] = 'pbpaste' },
+      cache_enabled = 0,
+    }
+  elseif global.is_wsl then
+    vim.g.clipboard = {
+      name = 'win32yank-wsl',
+      copy = {
+        ['+'] = 'win32yank.exe -i --crlf',
+        ['*'] = 'win32yank.exe -i --crlf',
+      },
+      paste = {
+        ['+'] = 'win32yank.exe -o --lf',
+        ['*'] = 'win32yank.exe -o --lf',
+      },
+      cache_enabled = 0,
+    }
+  end
 end
 
 local load_core = function()
-    leader_map()
+  leader_map()
 
-    gui_config()
-    neovide_config()
-    clipboard_config()
+  gui_config()
+  neovide_config()
+  clipboard_config()
 
-    require("core.options")
-    require("core.event")
-    require("core.filetype")
-    require("keymap")
+  require('core.options')
+  require('core.event')
+  require('core.filetype')
+  require('keymap')
 
-    vim.api.nvim_set_option_value("background", settings.background, {})
-    -- vim.cmd.colorscheme(settings.colorscheme)
+  vim.api.nvim_set_option_value('background', settings.background, {})
+  -- vim.cmd.colorscheme(settings.colorscheme)
 end
 
 load_core()

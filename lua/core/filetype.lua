@@ -1,9 +1,9 @@
 vim.filetype.add({
-    pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+  pattern = { ['.*/hypr/.*%.conf'] = 'hyprlang' },
 })
 
 vim.filetype.add({
-    pattern = {
-        ['%.gitlab%-ci%.ya?ml'] = 'yaml.gitlab',
-    },
-})  
+  pattern = {
+    ['%.gitlab%-ci%.ya?ml'] = 'yaml.gitlab',
+  },
+})

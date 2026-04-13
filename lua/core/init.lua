@@ -54,6 +54,7 @@ local load_core = function()
 
   require('core.options')
   require('core.event')
+  require('core.command')
   require('core.filetype')
   require('keymap')
 

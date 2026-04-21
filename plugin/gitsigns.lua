@@ -3,7 +3,7 @@ vim.schedule(function()
 
   require('gitsigns').setup({ current_line_blame = true })
 
-  vim.keymap.set('n', '<leader>gp', ':Gitsign preview_hunk<CR>', { desc = 'Gitsign: preview' })
+  vim.keymap.set('n', '<leader>gp', ':Gitsign preview_hunk<CR>', { desc = 'Gitsign: preview hunk' })
   vim.keymap.set(
     { 'n', 'x' },
     '<leader>gs',

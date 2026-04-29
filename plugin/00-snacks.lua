@@ -1,5 +1,6 @@
 vim.pack.add({ 'https://github.com/folke/snacks.nvim' })
 require('snacks').setup({
+  input = {},
   picker = {
     sources = {
       git_log = {

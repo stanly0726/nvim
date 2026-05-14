@@ -15,6 +15,9 @@ local mappings = {
     :with_silent()
     :with_desc('open tmux-sessionizer'),
   ['n|<leader>Y'] = map_cmd([["+Y]]):with_desc('yank: line to system clipboard'),
+  ['n|<F2>'] = map_callback(function()
+    vim.lsp.buf.rename()
+  end):with_desc('edit: rename'),
 
   -- window movement
   ['n|<C-Left>'] = map_cmd('<C-w>h'):with_desc('window: focus left'),

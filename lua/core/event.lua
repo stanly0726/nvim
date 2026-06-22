@@ -45,6 +45,27 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
+-- auto cd into path argument
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Change directory to the path argument passed on startup',
+  callback = function()
+    -- Get the first argument passed to nvim
+    local arg = vim.fn.argv(0)
+    if arg == '' then
+      return
+    end
+
+    -- Check if it is a directory or a file, and find its parent folder
+    local path = vim.fn.expand(arg)
+    if vim.fn.isdirectory(path) == 0 then
+      path = vim.fn.fnamemodify(path, ':h')
+    end
+
+    -- Change the global working directory
+    vim.cmd('cd ' .. vim.fn.fnameescape(path))
+  end,
+})
+
 function autocmd.nvim_create_augroups(definitions)
   for group_name, definition in pairs(definitions) do
     -- Prepend an underscore to avoid name clashes

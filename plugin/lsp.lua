@@ -16,8 +16,18 @@ vim.api.nvim_create_autocmd('BufRead', {
       ensure_installed = settings.lsp_deps,
     })
 
+    local icons = {
+      diagnostics = require('core.utils.icons').get('diagnostics', true),
+    }
     vim.diagnostic.config({
-      signs = true,
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error_alt,
+          [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning_alt,
+          [vim.diagnostic.severity.INFO] = icons.diagnostics.Information_alt,
+          [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint_alt,
+        },
+      },
       virtual_text = not diagnostics_virtual_lines,
       virtual_lines = diagnostics_virtual_lines and {
         severity = {

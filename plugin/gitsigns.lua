@@ -10,6 +10,7 @@ vim.schedule(function()
     ':Gitsign stage_hunk<CR>',
     { desc = 'Gitsign: stage hunk' }
   )
+  vim.keymap.set('n', '<leader>gd', ':Gitsign reset_hunk<CR>', { desc = 'Gitsign: reset hunk' })
   vim.keymap.set('n', ']g', ':Gitsign next_hunk<CR>', { desc = 'Gitsign: next hunk' })
   vim.keymap.set('n', '[g', ':Gitsign prev_hunk<CR>', { desc = 'Gitsign: previous hunk' })
 end)

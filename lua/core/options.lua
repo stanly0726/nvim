@@ -82,4 +82,6 @@ end
 -- vim.g.loaded_netrwPlugin = 1
 vim.g.netrw_liststyle = 3
 
+require('vim._core.ui2').enable()
+
 load_options()

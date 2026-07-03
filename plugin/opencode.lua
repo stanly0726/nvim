@@ -11,17 +11,14 @@ vim.g.opencode_opts = {
   server = {
     start = function()
       local Terminal = require('toggleterm.terminal').Terminal
-      local opencode = Terminal:new({
+      Opencode = Terminal:new({
         cmd = 'opencode --port',
         id = 99,
         display_name = 'opencode',
         direction = 'vertical',
       })
-      Terminal.open(opencode, 70, 'vertical')
 
-      function _opencode_toggle()
-        opencode:toggle()
-      end
+      Opencode:open(70, 'vertical')
     end,
   },
 }
@@ -30,10 +27,10 @@ vim.o.autoread = true -- Required for `opts.events.reload`
 
 -- Recommended/example keymaps
 vim.keymap.set({ 'n' }, '<leader>o', function()
-  if _opencode_toggle == nil then
-    require('opencode').start()
+  if Opencode == nil then
+    require('opencode.config').opts.server.start()
   else
-    _opencode_toggle()
+    Opencode:toggle()
   end
 end, { desc = 'Opencode: toggle UI' })
 vim.keymap.set({ 'n', 'x' }, '<C-x>', function()

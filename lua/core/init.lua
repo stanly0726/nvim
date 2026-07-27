@@ -5,6 +5,25 @@ local leader_map = function()
   vim.g.mapleader = settings['leader_key']
 end
 
+-- auto cd into path argument
+local change_dir = function()
+  -- Get the first argument passed to nvim
+  local arg = vim.fn.argv(0)
+  if arg == '' then
+    return
+  end
+
+  -- Check if it is a directory or a file, and find its parent folder
+  local path = vim.fn.expand(arg)
+  if vim.fn.isdirectory(path) == 0 then
+    path = vim.fn.fnamemodify(path, ':h')
+  end
+
+  print(arg)
+  -- Change the global working directory
+  vim.cmd('cd ' .. vim.fn.fnameescape(path))
+end
+
 local gui_config = function()
   if next(settings.gui_config) then
     vim.api.nvim_set_option_value(
@@ -47,6 +66,7 @@ end
 
 local load_core = function()
   leader_map()
+  change_dir()
 
   gui_config()
   neovide_config()

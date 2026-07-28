@@ -13,9 +13,59 @@ vim.api.nvim_create_autocmd('BufRead', {
     local dap = require('dap')
     local dapui = require('dapui')
     local dap_virtual_text = require('nvim-dap-virtual-text')
+    local icons = {
+      ui = require('core.utils.icons').get('ui'),
+      dap = require('core.utils.icons').get('dap'),
+    }
 
     dap_virtual_text.setup({})
-    dapui.setup()
+    ---@diagnostic disable-next-line: missing-fields
+    dapui.setup({
+      icons = {
+        expanded = icons.ui.ArrowOpen,
+        collapsed = icons.ui.ArrowClosed,
+        current_frame = icons.ui.Indicator,
+      },
+      layouts = {
+        {
+          elements = {
+            {
+              id = 'scopes',
+              size = 0.3,
+            },
+            { id = 'watches', size = 0.3 },
+            { id = 'stacks', size = 0.3 },
+            { id = 'breakpoints', size = 0.1 },
+          },
+          size = 0.3,
+          position = 'left',
+        },
+        {
+          elements = {
+            { id = 'console', size = 0.55 },
+            { id = 'repl', size = 0.45 },
+          },
+          position = 'bottom',
+          size = 0.25,
+        },
+      },
+      controls = {
+        enabled = true,
+        -- Display controls in this session
+        element = 'repl',
+        icons = {
+          pause = icons.dap.Pause,
+          play = icons.dap.Play,
+          step_into = icons.dap.StepInto,
+          step_over = icons.dap.StepOver,
+          step_out = icons.dap.StepOut,
+          step_back = icons.dap.StepBack,
+          run_last = icons.dap.RunLast,
+          terminate = icons.dap.Terminate,
+        },
+      },
+    })
+
     mason_dap.setup({
       ensure_installed = require('core.settings')['dap_deps'],
       automatic_installation = true,
@@ -55,5 +105,26 @@ vim.api.nvim_create_autocmd('BufRead', {
     vim.keymap.set('n', '<leader>du', function()
       dapui.toggle({})
     end, { desc = 'DapUI: toggle' })
+
+    vim.fn.sign_define(
+      'DapBreakpoint',
+      { text = icons.dap.Breakpoint, texthl = 'DapBreakpoint', linehl = '', numhl = '' }
+    )
+    vim.fn.sign_define(
+      'DapBreakpointCondition',
+      { text = icons.dap.BreakpointCondition, texthl = 'DapBreakpoint', linehl = '', numhl = '' }
+    )
+    vim.fn.sign_define(
+      'DapStopped',
+      { text = icons.dap.Stopped, texthl = 'DapStopped', linehl = '', numhl = '' }
+    )
+    vim.fn.sign_define(
+      'DapBreakpointRejected',
+      { text = icons.dap.BreakpointRejected, texthl = 'DapBreakpoint', linehl = '', numhl = '' }
+    )
+    vim.fn.sign_define(
+      'DapLogPoint',
+      { text = icons.dap.LogPoint, texthl = 'DapLogPoint', linehl = '', numhl = '' }
+    )
   end,
 })

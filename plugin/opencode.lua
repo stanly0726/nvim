@@ -1,3 +1,5 @@
+local bind = require('keymap.bind')
+
 vim.pack.add({
   {
     src = 'https://github.com/nickjvandyke/opencode.nvim',
@@ -18,7 +20,7 @@ vim.g.opencode_opts = {
         direction = 'vertical',
       })
 
-      Opencode:open(70, 'vertical')
+      Opencode:open(60, 'vertical')
     end,
   },
 }
@@ -26,20 +28,30 @@ vim.g.opencode_opts = {
 vim.o.autoread = true -- Required for `opts.events.reload`
 
 -- Recommended/example keymaps
-vim.keymap.set({ 'n' }, '<leader>o', function()
-  if Opencode == nil then
-    require('opencode.config').opts.server.start()
-  else
-    Opencode:toggle()
-  end
-end, { desc = 'Opencode: toggle UI' })
-vim.keymap.set({ 'n', 'x' }, '<C-x>', function()
-  require('opencode').select()
-end, { desc = 'Opencode: open menu' })
-vim.keymap.set({ 'x' }, '<leader>o', function()
-  require('opencode').ask('@this: ')
-end, { desc = 'Opencode: ask selected' })
-
-vim.keymap.set({ 'n', 'x' }, 'go', function()
-  return require('opencode').operator('@this ')
-end, { desc = 'Opencode: link range', expr = true })
+bind.load_mapping({
+  ['n|<leader>o'] = bind
+    .map_lua(function()
+      if Opencode == nil then
+        require('opencode.config').opts.server.start()
+      else
+        Opencode:toggle()
+      end
+    end)
+    :with_desc('Opencode: toggle UI'),
+  ['nx|<C-x>'] = bind
+    .map_lua(function()
+      require('opencode').select()
+    end)
+    :with_desc('Opencode: open menu'),
+  ['x|<leader>o'] = bind
+    .map_lua(function()
+      require('opencode').ask('@this: ')
+    end)
+    :with_desc('Opencode: ask selected'),
+  ['nx|go'] = bind
+    .map_lua(function()
+      return require('opencode').operator('@this ')
+    end)
+    :with_desc('Opencode: link range')
+    :with_expr(),
+})

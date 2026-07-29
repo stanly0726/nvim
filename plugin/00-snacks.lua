@@ -1,3 +1,5 @@
+local bind = require('keymap.bind')
+
 vim.pack.add({ 'https://github.com/folke/snacks.nvim' })
 
 require('snacks').setup({
@@ -31,31 +33,26 @@ require('snacks').setup({
 })
 
 vim.schedule(function()
-  vim.keymap.set('n', '<leader>ff', Snacks.picker.files, { desc = 'Snacks: files picker' })
-  vim.keymap.set('n', '<leader>fb', Snacks.picker.buffers, { desc = 'Snacks: buffers picker' })
-  vim.keymap.set('n', '<leader>fr', Snacks.picker.registers, { desc = 'Snacks: register picker' })
-
-  vim.keymap.set('n', '<leader>sh', Snacks.picker.help, { desc = 'Snacks: help picker' })
-  vim.keymap.set('n', '<leader>sk', Snacks.picker.keymaps, { desc = 'Snacks: keymaps picker' })
-  vim.keymap.set('n', '<leader>sw', function()
-    Snacks.picker.grep({ hidden = true })
-  end, { desc = 'Snacks: workspace grep' })
-  vim.keymap.set('n', '<leader>sW', function()
-    Snacks.picker.grep_word({ hidden = true })
-  end, { desc = 'Snacks: grep under cursor' })
-
-  vim.keymap.set('n', '<leader>ss', function()
-    Snacks.picker()
-  end, { desc = 'Snacks: picker menu' })
-  vim.keymap.set(
-    'n',
-    '<leader>sd',
-    Snacks.picker.diagnostics,
-    { desc = 'Snacks: diagnostics picker' }
-  )
-  vim.keymap.set('n', '<leader>e', function()
-    Snacks.explorer()
-  end, { desc = 'Snacks: explorer' })
+  bind.load_mapping({
+    ['n|<leader>ff'] = bind.map_lua(Snacks.picker.files):with_desc('Snacks: files picker'),
+    ['n|<leader>fb'] = bind.map_lua(Snacks.picker.buffers):with_desc('Snacks: buffers picker'),
+    ['n|<leader>fr'] = bind.map_lua(Snacks.picker.registers):with_desc('Snacks: register picker'),
+    ['n|<leader>sh'] = bind.map_lua(Snacks.picker.help):with_desc('Snacks: help picker'),
+    ['n|<leader>sk'] = bind.map_lua(Snacks.picker.keymaps):with_desc('Snacks: keymaps picker'),
+    ['n|<leader>sw'] = bind.map_lua(function()
+      Snacks.picker.grep({ hidden = true })
+    end):with_desc('Snacks: workspace grep'),
+    ['n|<leader>sW'] = bind.map_lua(function()
+      Snacks.picker.grep_word({ hidden = true })
+    end):with_desc('Snacks: grep under cursor'),
+    ['n|<leader>ss'] = bind.map_lua(function()
+      Snacks.picker()
+    end):with_desc('Snacks: picker menu'),
+    ['n|<leader>sd'] = bind.map_lua(Snacks.picker.diagnostics):with_desc('Snacks: diagnostics picker'),
+    ['n|<leader>e'] = bind.map_lua(function()
+      Snacks.explorer()
+    end):with_desc('Snacks: explorer'),
+  })
 
 -- toggle Snacks.nvim zen mode
   vim.api.nvim_create_user_command('Zen', Snacks.zen.zen, {

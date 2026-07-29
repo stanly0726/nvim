@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Autojump to last edit
-vim.api.nvim_create_autocmd('BufReadPost', {
+vim.api.nvim_create_autocmd('BufRead', {
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)

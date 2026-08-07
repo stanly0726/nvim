@@ -10,9 +10,7 @@ local function load_options()
     completeopt = 'fuzzy,menuone,noselect,popup',
     cursorcolumn = true,
     cursorline = true,
-    diffopt = 'filler,iwhite,internal,linematch:60,algorithm:patience',
     equalalways = false,
-    errorbells = true,
     expandtab = true,
     foldexpr = 'v:lua.vim.treesitter.foldexpr()',
     foldlevelstart = 99,
@@ -35,7 +33,7 @@ local function load_options()
     shiftwidth = 4,
     shortmess = 'aoOTcF',
     showbreak = '↳  ',
-    showmode = false,
+    showmode = true,
     sidescrolloff = 10,
     signcolumn = 'yes',
     smartcase = true,
@@ -61,6 +59,7 @@ local function load_options()
   local function isempty(s)
     return s == nil or s == ''
   end
+
   local function use_if_defined(val, fallback)
     return val ~= nil and val or fallback
   end
@@ -77,11 +76,11 @@ local function load_options()
   end
 end
 
--- Newtrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456
+-- Netrw liststyle: https://medium.com/usevim/the-netrw-style-options-3ebe91d42456
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.netrw_liststyle = 3
 
-require('vim._core.ui2').enable()
+-- require('vim._core.ui2').enable()
 
 load_options()

@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd('BufRead', {
+vim.api.nvim_create_autocmd('VimEnter', {
   once = true,
   callback = function()
     vim.pack.add({

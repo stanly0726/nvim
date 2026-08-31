@@ -102,7 +102,7 @@ function autocmd.load_autocmds()
       {
         'TextYankPost',
         '*',
-        [[silent! lua vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 300 })]],
+        [[silent! lua vim.hl.on_yank({ higroup = 'IncSearch', timeout = 300 })]],
       },
     },
     term = {

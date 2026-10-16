@@ -6,6 +6,10 @@ vim.schedule(function()
 
   vim.keymap.set({ 'n', 'x', 'o' }, ',', '<Plug>(leap)', { desc = 'Leap: jump to word' })
   -- vim.keymap.set({ 'n', 'x', 'o' }, 'S', '<Plug>(leap-backward)', {desc = "leap search backward"})
+  vim.keymap.set({ 'n', 'x', 'o' }, 'g,', function()
+    require('leap').visit { input = (vim.fn.mode(true) == 'n') and 'v' or '' }
+  end)
+
   vim.keymap.set(
     { 'n', 'x', 'o' },
     '<leader>,',

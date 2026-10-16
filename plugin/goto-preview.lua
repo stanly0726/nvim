@@ -5,10 +5,9 @@ vim.api.nvim_create_autocmd('BufRead', {
     vim.pack.add({ 'https://github.com/rmagatti/goto-preview' })
     require('goto-preview').setup({
       default_mappings = true,
-      opacity = 0,
-      -- references = {
-      --   provider = 'snacks',
-      -- },
+      references = {
+        provider = 'snacks',
+      },
     })
   end,
 })
